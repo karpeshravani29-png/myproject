@@ -2,6 +2,6 @@
 
 int main()
 {
-   printf("Hello World from GitHub!");
+    printf("Hello from CONFLICT branch");
     return 0;
 }
