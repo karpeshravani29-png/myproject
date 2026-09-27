@@ -24,3 +24,14 @@ jobs:
 
       - name: Run tests
         run: pytest -q
+
+      - name: Package application
+        run: |
+          mkdir -p dist
+          zip -r dist/myproject-${{ github.sha }}.zip app.py test_app.py requirements.txt
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: myproject-package
+          path: dist/*.zip
