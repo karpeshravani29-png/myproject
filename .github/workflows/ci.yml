@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, conflict ]
+    branches: [ main, conflict, DEVOPS-8-login ]
   pull_request:
-    branches: [ main, conflict ]
+    branches: [ main, conflict, DEVOPS-8-login ]
 
 jobs:
   build-test:
