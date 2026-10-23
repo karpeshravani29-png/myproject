@@ -1,0 +1,22 @@
+
+name: CI-CD Deployment
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Build C application
+        run: gcc HelloWorld.c -o HelloWorld
+
+      - name: Test application
+        run: |
+          ./HelloWorld
+          echo "Application test completed successfully"
