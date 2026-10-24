@@ -13,10 +13,25 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc
+
       - name: Build C application
-        run: gcc HelloWorld.c -o HelloWorld
+        run: gcc -Wall -Wextra HelloWorld.c -o HelloWorld
 
       - name: Test application
         run: |
           ./HelloWorld
           echo "Application test completed successfully"
+
+      - name: Build Docker image
+        run: docker build -t helloworld-app .
+
+      - name: Deploy using Docker Compose
+        run: docker compose up -d --build
+
+      - name: Verify running container
+        run: |
+          docker compose ps
+          docker compose logs app
+          docker compose down
